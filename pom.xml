@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.dezoo.dieren</groupId>
     <artifactId>dierenservice</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>dierenservice</name>
     <description>Dierenservice voor dezoo groepswerk Advanced Programming Topics</description>
 
