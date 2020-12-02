@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -67,14 +68,10 @@ public class DierenController {
     }
     @PostConstruct
     public void fillDBwithTestData() {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            dierenRepository.save(new DierModel("r001", "Flappie", "Rabbit", format.parse("16/04/2017"), true, "mammal"));
-            dierenRepository.save(new DierModel("l001", "Simba", "Lion", format.parse("24/07/2011"), true, "mammal"));
-            dierenRepository.save(new DierModel("s001", "Scrat", "Squirrel", format.parse("04/01/2019"), true, "mammal"));
+        dierenRepository.save(new DierModel("r001", "Flappie", "Rabbit", new Date("16/04/2017"), true, "mammal"));
+        dierenRepository.save(new DierModel("l001", "Simba", "Lion", new Date("24/07/2011"), true, "mammal"));
+        dierenRepository.save(new DierModel("s001", "Scrat", "Squirrel", new Date("04/01/2019"), true, "mammal"));
 
-        } catch (ParseException ignored) {
-        }
     }
 
 }

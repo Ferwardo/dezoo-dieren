@@ -1,0 +1,5 @@
+FROM postgres
+ENV POSTGRES_PASSWORD postgres
+ENV POSTGRES_DB dieren
+CMD ["postgres"]
+EXPOSE 5432
