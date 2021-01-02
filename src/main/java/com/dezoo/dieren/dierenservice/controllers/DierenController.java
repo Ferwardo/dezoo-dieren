@@ -25,18 +25,13 @@ public class DierenController {
     }
 
     @GetMapping("/{animalID}")
-    public DierModel getAnimalID(@PathVariable String animalId){
-        return dierenRepository.findDierModelByAnimalId(animalId);
+    public DierModel getAnimalID(@PathVariable String animalID){
+        return dierenRepository.findDierModelByAnimalId(animalID);
     }
 
     @GetMapping("/getVertebrates")
     public List<DierModel> getVertebrates(){
         return dierenRepository.findDierModelByVertebrate(true);
-    }
-
-    @GetMapping("/{classification}")
-    public List<DierModel> getAnimalsInClassification(@PathVariable String classification){
-        return dierenRepository.findDierModelByClassification(classification);
     }
 
     @PostMapping
