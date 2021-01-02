@@ -34,11 +34,6 @@ public class DierenController {
         return dierenRepository.findDierModelByVertebrate(true);
     }
 
-    @GetMapping("/{classification}")
-    public List<DierModel> getAnimalsInClassification(@PathVariable String classification){
-        return dierenRepository.findDierModelByClassification(classification);
-    }
-
     @PostMapping
     public void postAnimal(@RequestBody DierModel dierModel){
         dierenRepository.save(dierModel);
