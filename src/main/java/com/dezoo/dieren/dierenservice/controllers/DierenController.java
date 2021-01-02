@@ -31,7 +31,7 @@ public class DierenController {
 
     @GetMapping("/getVertebrates")
     public List<DierModel> getVertebrates(){
-        return dierenRepository.findDierModelByVertebrate();
+        return dierenRepository.findDierModelByVertebrate(true);
     }
 
     @GetMapping("/{classification}")

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface DierenRepository extends JpaRepository<DierModel, Integer> {
     DierModel findDierModelByAnimalId(String animalId);
-    List<DierModel> findDierModelByVertebrate();
+    List<DierModel> findDierModelByVertebrate(boolean isVertebrate);
     List<DierModel> findDierModelByClassification(String classification);
 }
