@@ -1,5 +1,7 @@
 package com.dezoo.dieren.dierenservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +13,7 @@ public class DierModel {
     //fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int Id;
     private String animalId;
     private String name;
@@ -23,7 +26,7 @@ public class DierModel {
     public DierModel(){}
 
     public DierModel(int id, String animalId, String name, String kind, Date dateOfBirth, boolean vertebrate, String classification){
-        Id = id;
+        this.Id = id;
         this.animalId = animalId;
         this.name = name;
         this.kind = kind;
