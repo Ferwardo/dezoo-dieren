@@ -48,6 +48,7 @@ public class DierenController {
         dierModel.setVertebrate(changedDierModel.isVertebrate());
 
         dierModel = dierenRepository.save(dierModel);
+
         return ResponseEntity.ok(dierModel);
 
     }
