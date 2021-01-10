@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,27 +18,27 @@ public class DierenController {
     private DierenRepository dierenRepository;
 
     @GetMapping
-    public List<DierModel> getAnimals(){
+    public List<DierModel> getAnimals() {
         return dierenRepository.findAll();
     }
 
     @GetMapping("/{animalID}")
-    public DierModel getAnimalID(@PathVariable String animalID){
+    public DierModel getAnimalID(@PathVariable String animalID) {
         return dierenRepository.findDierModelByAnimalId(animalID);
     }
 
     @GetMapping("/getVertebrates")
-    public List<DierModel> getVertebrates(){
+    public List<DierModel> getVertebrates() {
         return dierenRepository.findDierModelByVertebrate(true);
     }
 
     @PostMapping
-    public void postAnimal(@RequestBody DierModel dierModel){
+    public void postAnimal(@RequestBody DierModel dierModel) {
         dierenRepository.save(dierModel);
     }
 
     @PutMapping("/{animalID}")
-    public ResponseEntity<DierModel> putAnimal(@PathVariable String animalID, @RequestBody DierModel changedDierModel){
+    public ResponseEntity<DierModel> putAnimal(@PathVariable String animalID, @RequestBody DierModel changedDierModel) {
         DierModel dierModel = dierenRepository.findDierModelByAnimalId(animalID);
 
         dierModel.setClassification(changedDierModel.getClassification());
@@ -55,12 +53,17 @@ public class DierenController {
     }
 
     @DeleteMapping("/{animalID}")
-    public ResponseEntity<DierModel> deleteAnimal(@PathVariable String animalID){
+    public ResponseEntity<DierModel> deleteAnimal(@PathVariable String animalID) {
         DierModel dierModel = dierenRepository.findDierModelByAnimalId(animalID);
-        dierenRepository.delete(dierModel);
+        if (dierModel != null) {
+            dierenRepository.delete(dierModel);
 
-        return ResponseEntity.ok(dierModel);
+            return ResponseEntity.ok(dierModel);
+        }
+        else
+            return ResponseEntity.notFound().build();
     }
+
     @PostConstruct
     public void fillDBwithTestData() {
         dierenRepository.save(new DierModel("r001", "Flappie", "Rabbit", new Date("16/04/2017"), true, "mammal"));
