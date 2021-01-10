@@ -77,6 +77,44 @@ public class DierenControllerUnitTests {
                 .andExpect(jsonPath("[2].vertebrate", is(true)))
                 .andExpect(jsonPath("[2].classification", is("Bird")));
     }
+    @Test
+    public void givenDier_whenGetVertebrates_ThenReturnJsonDieren() throws Exception {
+        DierModel dierModel1 = new DierModel("lion1", "Simba", "Lion", format.parse("03/03/2003"), true, "Mammal"),
+                dierModel2 = new DierModel("rabbit1", "Stamper", "Rabbit", format.parse("03/11/2016"), true, "Mammal"),
+                dierModel3 = new DierModel("parrot1", "Coco Granata", "Parrot", format.parse("11/05/1998"), true, "Bird");
+
+        List<DierModel> animalList = new ArrayList<>();
+        animalList.add(dierModel1);
+        animalList.add(dierModel2);
+        animalList.add(dierModel3);
+
+        given(dierenRepository.findDierModelByVertebrate(true)).willReturn(animalList);
+
+        mockMvc.perform(get("/animals/getVertebrates"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("[0].animalId", is("lion1")))
+                .andExpect(jsonPath("[0].name", is("Simba")))
+                .andExpect(jsonPath("[0].kind", is("Lion")))
+                .andExpect(jsonPath("[0].dateOfBirth", is("2003-03-02T23:00:00.000+00:00")))
+                .andExpect(jsonPath("[0].vertebrate", is(true)))
+                .andExpect(jsonPath("[0].classification", is("Mammal")))
+
+                .andExpect(jsonPath("[1].animalId", is("rabbit1")))
+                .andExpect(jsonPath("[1].name", is("Stamper")))
+                .andExpect(jsonPath("[1].kind", is("Rabbit")))
+                .andExpect(jsonPath("[1].dateOfBirth", is("2016-11-02T23:00:00.000+00:00")))
+                .andExpect(jsonPath("[1].vertebrate", is(true)))
+                .andExpect(jsonPath("[1].classification", is("Mammal")))
+
+                .andExpect(jsonPath("[2].animalId", is("parrot1")))
+                .andExpect(jsonPath("[2].name", is("Coco Granata")))
+                .andExpect(jsonPath("[2].kind", is("Parrot")))
+                .andExpect(jsonPath("[2].dateOfBirth", is("1998-05-10T22:00:00.000+00:00")))
+                .andExpect(jsonPath("[2].vertebrate", is(true)))
+                .andExpect(jsonPath("[2].classification", is("Bird")));
+    }
 
     @Test
     public void givenDier_whenGetDierByID_ThenReturnJsonDier() throws Exception {

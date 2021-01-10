@@ -24,16 +24,6 @@ public class DierModel {
 
     //constructors
     public DierModel(){}
-    
-    public DierModel(int id, String animalId, String name, String kind, Date dateOfBirth, boolean vertebrate, String classification){
-        this.Id = id;
-        this.animalId = animalId;
-        this.name = name;
-        this.kind = kind;
-        this.dateOfBirth = dateOfBirth;
-        this.vertebrate = vertebrate;
-        this.classification = classification;
-    }
 
     public DierModel(String animalId, String name, String kind, Date dateOfBirth, boolean vertebrate, String classification){
         this.animalId = animalId;
